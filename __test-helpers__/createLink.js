@@ -30,11 +30,7 @@ const createLink = async (props, initialPath, options, isNavLink) => {
   const store = createStore(rootReducer, enhancer)
   await store.dispatch(firstRoute())
 
-  const component = renderer.create(
-    <Provider store={store}>
-      {link}
-    </Provider>
-  )
+  const component = renderer.create(<Provider store={store}>{link}</Provider>)
 
   return {
     component,

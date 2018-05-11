@@ -43,9 +43,7 @@ createTest('route.defaultState', {
   },
   THIRD: {
     path: '/third',
-    defaultState: q => {
-      return { ...q, foo: 'bar' }
-    }
+    defaultState: q => ({ ...q, foo: 'bar' })
   }
 }, [
   { type: 'SECOND', state: { key: 'correct' } },

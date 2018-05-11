@@ -33,9 +33,7 @@ beforeAll(async () => {
 createTest('restore history from history fallback with redirect before enter', {
   FIRST: {
     path: '/',
-    beforeEnter: ({ dispatch }) => {
-      return dispatch({ type: 'REDIRECTED' })
-    },
+    beforeEnter: ({ dispatch }) => dispatch({ type: 'REDIRECTED' }),
     thunk: function() {}
   },
   SECOND: '/second',

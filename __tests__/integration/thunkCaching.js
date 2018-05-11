@@ -19,9 +19,7 @@ createTest('options.createCacheKey', {
     thunk: function() {}
   }
 }, {
-  createCacheKey: (action, name) => {
-    return action.type
-  }
+  createCacheKey: (action, name) => action.type
 }, [], async ({ snap }) => {
   await snap({ type: 'SECOND' })
   await snap({ type: 'FIRST' })
