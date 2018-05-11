@@ -10,12 +10,24 @@ createTest('core capabilities can be overriden as options', {
     thunk: function() {}
   }
 }, {
-  createHistory: (...args) => createHistory(...args),
-  createReducer: (...args) => createReducer(...args),
-  compose: (...args) => compose(...args),
-  shouldTransition: (...args) => shouldTransition(...args),
-  createRequest: (...args) => createRequest(...args),
-  shouldCall: (...args) => shouldCall(...args),
+  createHistory: (...args) => {
+    return createHistory(...args)
+  },
+  createReducer: (...args) => {
+    return createReducer(...args)
+  },
+  compose: (...args) => {
+    return compose(...args)
+  },
+  shouldTransition: (...args) => {
+    return shouldTransition(...args)
+  },
+  createRequest: (...args) => {
+    return createRequest(...args)
+  },
+  shouldCall: (...args) => {
+    return shouldCall(...args)
+  },
   title: state => state.title,
   location: 'location'
 })

@@ -8,15 +8,21 @@ const routesMap = {
   },
   THIRD: {
     path: '/third/:foo',
-    action: (arg) => (req) => ({ params: { foo: arg } })
+    action: (arg) => (req) => {
+      return { params: { foo: arg } }
+    }
   },
   FOURTH: {
     path: '/fourth/:foo?',
     action: ['customCreator'],
-    customCreator: (arg) => (req) => ({ params: { foo: arg } })
+    customCreator: (arg) => (req) => {
+      return { params: { foo: arg } }
+    }
   },
   PLAIN: {
-    action: (arg) => ({ foo: arg })
+    action: (arg) => {
+      return { foo: arg }
+    }
   },
   NOT_FOUND: '/not-found-foo'
 }

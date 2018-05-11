@@ -36,7 +36,7 @@ createTest('recursively inherit callback', {
   THIRD: {
     path: '/third',
     thunk: function({ action }) {
-      return `${action.type} - payload`
+      return action.type + ' - payload'
     }
   }
 }, ['/first'])

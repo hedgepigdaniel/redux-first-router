@@ -23,8 +23,9 @@ createTest('doesRedirect() on server returns true and if passed callback calls c
   },
   PATHLESS: {
     thunk: async ({ dispatch }) => {
-      await dispatch(() =>               // and use anonymous thunk to confirm complex redirects work with the `serverRedirect` middleware
-        ({ type: 'REDIRECTED' }))
+      await dispatch(() => {              // and use anonymous thunk to confirm complex redirects work with the `serverRedirect` middleware
+        return { type: 'REDIRECTED' }
+      })
     }
   }
 }, [], async ({ firstResponse }) => {

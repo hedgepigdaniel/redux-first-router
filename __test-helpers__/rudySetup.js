@@ -53,7 +53,9 @@ export const defaultRoutes = {
       return 'thunk'
     },
     action: ['', 'customCreator'],
-    customCreator: (arg) => (req, type) => ({ params: { foo: arg }, type })
+    customCreator: (arg) => (req, type) => {
+      return { params: { foo: arg }, type }
+    }
   },
   FOURTH: {
     path: '/fourth',
@@ -61,11 +63,17 @@ export const defaultRoutes = {
       await fakeAsyncWork()
       return 'thunk'
     },
-    onComplete: () => 'onComplete',
-    action: (arg) => (req, type) => ({ params: { foo: arg }, type })
+    onComplete: () => {
+      return 'onComplete'
+    },
+    action: (arg) => (req, type) => {
+      return { params: { foo: arg }, type }
+    }
   },
   PLAIN: {
-    action: (arg) => ({ foo: arg })
+    action: (arg) => {
+      return { foo: arg }
+    }
   },
   [NOT_FOUND]: '/not-found-foo'
 }

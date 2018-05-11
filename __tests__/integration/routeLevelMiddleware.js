@@ -35,12 +35,14 @@ createTest('routes can specify route.middleware as function to override global m
   SECOND: {
     path: '/second',
     onTransition: () => 'SUCCESS!',
-    middleware: (api, killOnRedirect) => compose([
-      transformAction,
-      call('onTransition'),
-      enter,
-      changePageTitle,
-      () => () => 'foo'
-    ], api, killOnRedirect)
+    middleware: (api, killOnRedirect) => {
+      return compose([
+        transformAction,
+        call('onTransition'),
+        enter,
+        changePageTitle,
+        () => () => 'foo'
+      ], api, killOnRedirect)
+    }
   }
 })

@@ -87,7 +87,7 @@ export class Request {
       }
     }
 
-    if (this.ctx.busy && route && route.path) {
+    if (this.ctx.busy && route && route.path ) {
       const status = action.location && action.location.status
       action = redirect(action, status || 302)
     }
@@ -164,12 +164,14 @@ export class Request {
     return this.action.location && this.action.location.kind
   }
 
-  isUniversal = () => this.getLocation().universal
+  isUniversal = () => {
+    return this.getLocation().universal
+  }
 
-  isDoubleDispatch = () =>
-    this.action.location.url === this.getLocation().url
+  isDoubleDispatch = () => {
+    return this.action.location.url === this.getLocation().url
       && !/load|reset|jump/.test(this.getKind()) // on `load`, the `firstRoute` action will trigger the same URL as stored in state; the others must always pass through
-
+  }
 
   handleDoubleDispatch = () => {
     this.ctx.pending = false

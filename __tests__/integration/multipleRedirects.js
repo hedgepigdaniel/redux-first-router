@@ -3,12 +3,16 @@ import createTest from '../../__helpers__/createTest'
 createTest('multiple redirects are honored', {
   SECOND: {
     path: '/second',
-    beforeEnter: ({ dispatch }) => dispatch({ type: 'REDIRECTED' }),
+    beforeEnter: ({ dispatch }) => {
+      return dispatch({ type: 'REDIRECTED' })
+    },
     thunk: function() {}
   },
   REDIRECTED: {
     path: '/redirected',
-    beforeEnter: ({ dispatch }) => dispatch({ type: 'REDIRECTED_AGAIN' }),
+    beforeEnter: ({ dispatch }) => {
+      return dispatch({ type: 'REDIRECTED_AGAIN' })
+    },
     thunk: function() {}
   },
   REDIRECTED_AGAIN: {
@@ -20,12 +24,16 @@ createTest('multiple redirects are honored', {
 createTest('multiple redirects are honored after enter', {
   SECOND: {
     path: '/second',
-    thunk: ({ dispatch }) => dispatch({ type: 'REDIRECTED_AFTER' }),
+    thunk: ({ dispatch }) => {
+      return dispatch({ type: 'REDIRECTED_AFTER' })
+    },
     onComplete: function() {}
   },
   REDIRECTED_AFTER: {
     path: '/redirected-after',
-    thunk: ({ dispatch }) => dispatch({ type: 'REDIRECTED_AGAIN_AFTER' }),
+    thunk: ({ dispatch }) => {
+      return dispatch({ type: 'REDIRECTED_AGAIN_AFTER' })
+    },
     onComplete: function() {}
   },
   REDIRECTED_AGAIN_AFTER: {
