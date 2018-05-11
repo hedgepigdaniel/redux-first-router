@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../css/Home'
 
 const Home = () =>
-  <div className={styles.home}>
+  (<div className={styles.home}>
     <h1>HOME</h1>
 
     <h2>
@@ -97,6 +97,6 @@ onClick: () => dispatch({
       Redux-First Router data-fetching: solving the 80% use case for async
       Middleware
     </a>
-  </div>
+   </div>)
 
 export default Home

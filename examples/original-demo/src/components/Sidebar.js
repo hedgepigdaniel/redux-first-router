@@ -5,7 +5,7 @@ import { goToPage } from '../actions'
 import styles from '../css/Sidebar'
 
 const Sidebar = ({ onClick, path }) =>
-  <div className={styles.sidebar}>
+  (<div className={styles.sidebar}>
     <h2>SEO-FRIENDLY LINKS</h2>
 
     <NavLink activeClassName={styles.active} to='/'>HOME</NavLink>
@@ -58,7 +58,7 @@ const Sidebar = ({ onClick, path }) =>
     <NavLink to={{ type: 'ADMIN' }} activeClassName={styles.active}>
       ADMIN
     </NavLink>
-  </div>
+   </div>)
 
 const active = (currentPath, path) =>
   currentPath === path ? styles.active : ''

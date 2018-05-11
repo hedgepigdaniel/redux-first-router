@@ -4,7 +4,9 @@ import Link from 'redux-first-router-link'
 
 import styles from '../css/Video'
 
-const Player = ({ playing, youtubeId, slug, color }) =>
+const Player = ({
+  playing, youtubeId, slug, color
+}) =>
   !playing
     ? <div
       className={styles.heroContainer}

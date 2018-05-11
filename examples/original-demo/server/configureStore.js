@@ -3,7 +3,7 @@ import configureStore from '../src/configureStore'
 
 export default async (req, res) => {
   const jwToken = req.cookies.jwToken // see server/index.js to change jwToken
-  const preLoadedState = { jwToken }  // onBeforeChange will authenticate using this
+  const preLoadedState = { jwToken } // onBeforeChange will authenticate using this
 
   const { store, firstRoute } = configureStore(preLoadedState, req.path)
   const result = await store.dispatch(firstRoute())
@@ -15,5 +15,4 @@ export default async (req, res) => {
 
   return store
 }
-
 

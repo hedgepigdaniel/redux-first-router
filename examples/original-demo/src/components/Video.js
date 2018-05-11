@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import Player from './Player'
 import styles from '../css/Video'
 
-const Video = ({ slug, title, youtubeId, category, by, color, tip }) =>
-  <div className={styles.video}>
+const Video = ({
+  slug, title, youtubeId, category, by, color, tip
+}) =>
+  (<div className={styles.video}>
     <Player slug={slug} youtubeId={youtubeId} color={color} />
 
     <div className={styles.infoContainer}>
@@ -30,16 +32,16 @@ const Video = ({ slug, title, youtubeId, category, by, color, tip }) =>
               There is no data because you Refreshed the video page,
               whose data is fetched on the previous page. Try adding a thunk
               to this route in
-              <span style={{ color: 'white' }}> configureStore.js </span>
+            <span style={{ color: 'white' }}> configureStore.js </span>
               to insure when
               visited directly this page has its data as well. Use the
-              <span style={{ color: 'white' }}> findVideo(slug) </span>
+            <span style={{ color: 'white' }}> findVideo(slug) </span>
               method in
-              <span style={{ color: 'white' }}>../api/index.js:</span>
-          </span>}
+            <span style={{ color: 'white' }}>../api/index.js:</span>
+            </span>}
       </div>
     </div>
-  </div>
+   </div>)
 
 const mapState = state => state.videosHash[state.slug] || {}
 
