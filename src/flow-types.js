@@ -40,11 +40,11 @@ export type Route = {
 
 export type RouteInput = Function | Route
 
-export type RoutesMapInput = {
+export type RoutesInput = {
   [key: string]: RouteInput
 }
 
-export type RoutesMap = {
+export type Routes = {
   [key: string]: Route
 }
 
@@ -65,7 +65,6 @@ export type Navigators = {
   [key: string]: Navigator
 }
 
-export type Routes = Array<Route>
 export type RouteNames = Array<string>
 
 export type SelectLocationState = (state: Object) => LocationState
@@ -86,7 +85,7 @@ export type ActionToNavigation = (
 export type NavigationToAction = (
   navigators: Navigators,
   store: Store,
-  routesMap: RoutesMap,
+  routesMap: Routes,
   action: Object
 ) => {
   action: Object,
@@ -134,7 +133,7 @@ export type LocationState = {
   prev: Location,
   kind: ?string,
   history: ?HistoryData,
-  routesMap: RoutesMap,
+  routesMap: Routes,
   universal?: true
 }
 

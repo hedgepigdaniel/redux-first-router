@@ -5,7 +5,7 @@ import type {
   Route,
   Payload,
   Params,
-  RoutesMap,
+  Routes,
   ReceivedAction as Action,
   Options
 } from '../flow-types'
