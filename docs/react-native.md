@@ -12,7 +12,7 @@ This is really where the magic of **Redux First Router** shines. Everything is s
 *index.js:*
 ```js
 import { Linking } from 'react-native'
-import { push } from 'redux-first-router'
+import { push } from 'rudy'
 import startApp from './src'
 
 // yes, in the latest versions of React Native,
@@ -56,7 +56,7 @@ Implementing back button handling in React Native is as easy as it comes with *R
 
 ```js
 import { BackHandler } from 'react-native'
-import { back, canGoBack } from 'redux-first-router' // client-only methods come in handy here
+import { back, canGoBack } from 'rudy' // client-only methods come in handy here
 
 BackHandler.addEventListener('hardwareBackPress', () => {
   if (canGoBack()) {
@@ -87,8 +87,8 @@ It's messy as F***. It has all the remains of everything I tried to put this tog
 
 **Usage:**
 ```js
-import { connectRoutes } from 'redux-first-router'
-import reduxNavigation from 'redux-first-router-navigation'
+import { connectRoutes } from 'rudy'
+import reduxNavigation from 'rudy-navigation'
 
 connectRoutes(history, routesMap, {
   navigators: reduxNavigation({
@@ -134,8 +134,8 @@ yarn add redux-first-router-navigation
 
 *src/configureStore:*
 ```js
-import { connectRoutes } from 'redux-first-router'
-import reduxNavigation from 'redux-first-router-navigation'
+import { connectRoutes } from 'rudy'
+import reduxNavigation from 'rudy-navigation'
 
 import MyTabNavigator from './components/MyTabNavigator'
 import Stack1Navigator from './components/Stack1Navigator'

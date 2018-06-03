@@ -1,4 +1,4 @@
-import { doesRedirect } from 'redux-first-router/utils'
+import { doesRedirect } from 'rudy/utils'
 import configureStore from '../src/configureStore'
 
 export default async (req, res) => {

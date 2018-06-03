@@ -5,7 +5,7 @@ Complete Scroll restoration and hash `#links` handling is addressed primarily by
 Example:
 
 ```js
-import restoreScroll from 'redux-first-router-restore-scroll'
+import restoreScroll from 'rudy-restore-scroll'
 connectRoutes(history, routesMap, { restoreScroll: restoreScroll() })
 ```
 

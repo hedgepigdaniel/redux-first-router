@@ -1,4 +1,4 @@
-import { redirect } from 'redux-first-router'
+import { redirect } from 'rudy'
 
 export default {
   HOME: {
@@ -18,6 +18,10 @@ export default {
     //   await new Promise(res => setTimeout(res, 10000))
     //   return type === 'NOT_FOUND'
     // }
+  },
+  CODESPLIT: {
+    path: '/split/:page',
+    load: ({ params }) => import(/* webpackChunkName: my-component */ `./components/${params.page}/index.js`)
   },
   PATHLESS: () => console.log('PATHLESS'),
   LIST: {

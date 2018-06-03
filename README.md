@@ -88,7 +88,7 @@ part is that once you set it up there's virtually nothing left to do. It's truly
 Install `redux-first-router` and its peer dependency `history` plus our small `<Link />` package:
 
 ```bash
-yarn add history redux-first-router redux-first-router-link
+yarn add history redux-first-router rudy/Link
 ```
 
 **Full-Featured Universal Demo App (includes SSR + Splitting!):**
@@ -126,7 +126,7 @@ get in the way of optimizing animations.
 ## The Gist
 It's *set-and-forget-it*, so here's the most work you'll ever do! :+1:
 ```javascript
-import { connectRoutes } from 'redux-first-router'
+import { connectRoutes } from 'rudy'
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import createHistory from 'history/createBrowserHistory'
 import userIdReducer from './reducers/userIdReducer'
@@ -149,7 +149,7 @@ const store = createStore(rootReducer, compose(enhancer, middlewares))
 ```
 
 ```javascript
-import { NOT_FOUND } from 'redux-first-router'
+import { NOT_FOUND } from 'rudy'
 
 export const userIdReducer = (state = null, action = {}) => {
   switch(action.type) {
@@ -169,7 +169,7 @@ And here's how you'd embed SEO/Redux-friendly links in your app, while making us
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
-import Link from 'redux-first-router-link'
+import Link from 'rudy/Link'
 import store from './configureStore'
 
 const App = ({ userId, onClick }) =>
@@ -222,12 +222,12 @@ as keys in the payload object:
 
 *note: if you have more keys in your payload that is fine--so long as you have the minimum required keys to populate the path*
 
-Lastly, we haven't mentioned `redux-first-router-link`yet--**Redux-First Router** is purposely built in
+Lastly, we haven't mentioned `rudy/Link`yet--**Redux-First Router** is purposely built in
 a very modular way, which is why the `<Link />` component is in a separate package. It's extremely simple
 and you're free to make your own. Basically it passes the `to` path on to **Redux-First Router** and calls
 `event.preventDefault()` to stop page reloads. It also can take an action object as a prop, which it will transform
 into a URL for you! Its props API mirrors React Router's. The package is obvious enough once you get the hang of what's going on here--check it
-out when you're ready: [redux-first-router-link](http://github.com/faceyspacey/redux-first-router-link). And if 
+out when you're ready: [rudy/Link](http://github.com/faceyspacey/rudy/Link). And if 
 you're wondering, yes there is a `NavLink` component with props like `activeClass` and `activeStyle` just like in React Router.
 
 ## routesMap
@@ -302,7 +302,7 @@ That's all folks! :+1:
 
 What about if the URL is not found?
 > If the path is not found, or if actions fail to be converted to paths, our `NOT_FOUND` action type will be dispatched. You can apply it
-as a case in your reducer's switch statements. Here's where you get it: `import { NOT_FOUND } from 'redux-first-router'`. We have strong
+as a case in your reducer's switch statements. Here's where you get it: `import { NOT_FOUND } from 'rudy'`. We have strong
 idiomatic way to deal with it in server side rendering--check it out: [server side rendering](./docs/server-rendering.md).
 
 What if I don't want to use the *thunk* feature, can I use other ways of requesting the data?
@@ -339,8 +339,8 @@ That said, you absolutely don't need to have a URL for every action. In our apps
 to the biggest visual changes in the page that we want search engines to pick up.
 
 And what about actually getting links on the page for search engines to see?
-> Use [redux-first-router-link](http://github.com/faceyspacey/redux-first-router-link). This package has been built in a modular way,
-which is why that's not in here. *redux-first-router-link's* `<Link />` and `<NavLink />` components mirror React Router's. You should be using these on web to get `<a>` tags on your page for *Google*. In React Native, just dispatch actions in `onPress` handlers.
+> Use [rudy/Link](http://github.com/faceyspacey/rudy/Link). This package has been built in a modular way,
+which is why that's not in here. *rudy/Link's* `<Link />` and `<NavLink />` components mirror React Router's. You should be using these on web to get `<a>` tags on your page for *Google*. In React Native, just dispatch actions in `onPress` handlers.
 
 Why no route matching components like *React Router*?
 > Because they are unnecessary when the combination of actions and reducers lead to both a wider variety and better defined set of states, not to mention

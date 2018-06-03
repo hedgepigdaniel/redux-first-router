@@ -6,7 +6,7 @@ Below are some additional methods we export. The target user is package authors.
 These methods are also exported:
 
 ```javascript
-import { actionToPath, pathToAction } from 'redux-first-router'
+import { actionToPath, pathToAction } from 'rudy'
 
 const { routesMap } = store.getState().location
 
@@ -17,7 +17,7 @@ const action = pathToAction(path, routesMap)
 You will need the `routesMap` you made, which you can import from where you created it or you can
 get any time from your store.
 
-Our `<Link />` component, [Redux First Router Link](https://github.com/faceyspacey/redux-first-router-link),
+Our `<Link />` component, [Redux First Router Link](https://github.com/faceyspacey/rudy/Link),
 generates your links using these methods. It does so using the `store` Redux makes available via `context` in 
 order for all your links not to need to subscribe to the `store` and become unnecessarilly reactive. 
 
@@ -40,7 +40,7 @@ A simple utility to determine if an action is a location action transformed by t
 You can get access to the `history` object that you initially created, but from anywhere in your code without having to pass it down:
 
 ```js
-import { history } from 'redux-first-router'
+import { history } from 'rudy'
 
 // notice that you must call it as a function
 history().entries.map(entry => entry.pathname)

@@ -76,7 +76,7 @@ module.exports = {
           'history/createBrowserHistory',
           'transition-group',
           'redux-first-router',
-          'redux-first-router-link',
+          'rudy/Link',
           'babel-polyfill',
           'redux-devtools-extension/logOnlyInProduction'
         ]
