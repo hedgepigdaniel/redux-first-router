@@ -1,6 +1,6 @@
 export default (name = 'load') => (api) => async (req, next) => {
   const load = req.route && req.route[name]
-
+console.log(api);
   if (load) { // if `route.load` does not exist short-circuit
     const parts = await load(req)
     addPartsToRuntime(req, parts)
@@ -9,10 +9,11 @@ export default (name = 'load') => (api) => async (req, next) => {
   return next()
 }
 
-export const addPartsToRuntime = (req, parts) => {
+
+const addPartsToRuntime = (req, parts) => {
   const { route, action, options, tmp, ctx, commitDispatch } = req
   const { components, reducers, chunk, ...rest } = parts
-
+console.log(parts);
   if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
   if (reducers) {

@@ -5,19 +5,18 @@ import * as actionCreators from 'rudy/actions'
 import codeSplit from 'rudy/middleware/codeSplit'
 import enter from 'rudy/middleware/enter'
 import call from 'rudy/middleware/call'
+import transformAction from 'rudy/middleware/transformAction'
 import routes from './routes'
 import * as reducers from './reducers'
 
-
 export default (preloadedState, initialEntries) => {
   const options = { initialEntries, basenames: ['/foo', '/bar'] }
-  const { middleware, reducer, firstRoute, flushChunks } = createRouter(routes, options, [
-    // transformAction,
+  const { middleware, reducer, firstRoute, flushChunks,history, ctx } = createRouter(routes, options, [
+    transformAction,
     codeSplit('load'),
     enter,
     call('thunk', { cache: true }),
-  ]);
-
+  ])
   const rootReducer = combineReducers({ ...reducers, location: reducer })
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(middlewares)
