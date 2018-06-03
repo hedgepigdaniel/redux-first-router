@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
-import { createRouter } from 'rudy'
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension/logOnlyInProduction'
+import {createRouter} from 'rudy'
 import * as actionCreators from 'rudy/actions'
 import codeSplit from 'rudy/middleware/codeSplit'
 import enter from 'rudy/middleware/enter'
@@ -10,14 +10,16 @@ import routes from './routes'
 import * as reducers from './reducers'
 
 export default (preloadedState, initialEntries) => {
-  const options = { initialEntries, basenames: ['/foo', '/bar'] }
-  const { middleware, reducer, firstRoute, flushChunks,history, ctx } = createRouter(routes, options, [
+  const options = {initialEntries, basenames: ['/foo', '/bar']}
+  const router = createRouter(routes, options, [
     transformAction,
     codeSplit('load'),
     enter,
-    call('thunk', { cache: true }),
+    call('thunk', {cache: true}),
   ])
-  const rootReducer = combineReducers({ ...reducers, location: reducer })
+  console.log('router', router)
+  const {middleware, reducer, firstRoute, flushChunks, history, ctx} = router;
+  const rootReducer = combineReducers({...reducers, location: reducer})
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(middlewares)
   const store = createStore(rootReducer, preloadedState, enhancers)
@@ -25,7 +27,7 @@ export default (preloadedState, initialEntries) => {
   if (module.hot && process.env.NODE_ENV === 'development') {
     module.hot.accept('./reducers/index', () => {
       const reducers = require('./reducers/index')
-      const rootReducer = combineReducers({ ...reducers, location: reducer })
+      const rootReducer = combineReducers({...reducers, location: reducer})
       store.replaceReducer(rootReducer)
     })
   }
@@ -38,10 +40,10 @@ export default (preloadedState, initialEntries) => {
     window.ctx = ctx
   }
 
-  return { store, firstRoute }
+  return {store, firstRoute}
 }
 
 const composeEnhancers = (...args) =>
   typeof window !== 'undefined'
-    ? composeWithDevTools({ actionCreators })(...args)
+    ? composeWithDevTools({actionCreators})(...args)
     : compose(...args)
