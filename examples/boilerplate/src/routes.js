@@ -1,4 +1,4 @@
-import { redirect } from 'rudy'
+import { redirect } from 'rudy/actions'
 
 export default {
   HOME: {
