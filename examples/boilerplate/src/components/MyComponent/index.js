@@ -4,6 +4,6 @@ import thunk from './thunk'
 
 const components = { MyComponent, Another }
 const reducers = { reducerKey }
-const chunks = 'my-component'
+const chunk = 'my-component'
 
-export { components, reducers, thunk, chunks }
+export { components, reducers, thunk, chunk }

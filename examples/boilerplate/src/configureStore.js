@@ -17,7 +17,8 @@ export default (preloadedState, initialEntries) => {
     enter,
     call('thunk', {cache: true}),
   ])
-  console.log('router', router)
+
+  // console.log('router', router)
   const {middleware, reducer, firstRoute, flushChunks, history, ctx} = router;
   const rootReducer = combineReducers({...reducers, location: reducer})
   const middlewares = applyMiddleware(middleware)

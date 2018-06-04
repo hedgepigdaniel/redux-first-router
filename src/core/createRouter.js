@@ -67,7 +67,7 @@ export default (
   const wares = {}
   const register = (name: string, val?: any = true) => wares[name] = val
   const has = (name: string) => wares[name]
-  const ctx = { busy: false }
+  const ctx = { busy: false, chunks:[] }
   const api = { routes, history, options, register, has, ctx }
   const onError = call('onError')(api)
   const nextPromise = options.compose(middlewares, api, true)
@@ -105,6 +105,7 @@ export default (
     }
   }
 
+
   return {
     ...api,
     middleware,
@@ -112,6 +113,7 @@ export default (
     firstRoute: (resolveOnEnter = true) => {
       api.resolveFirstRouteOnEnter = resolveOnEnter
       return firstAction
-    }
+    },
+    flushChunks: () => ctx.chunks
   }
 }

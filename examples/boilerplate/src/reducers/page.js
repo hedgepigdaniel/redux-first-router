@@ -1,4 +1,14 @@
-export default (state = 'HOME', action = {}) => components[action.type] || state
+export default (state = 'HOME', action = {}) => {
+// console.log(components)
+//   console.log(action)
+  console.log(action.type, action);
+
+  if (action.params) {
+    console.log(Object.assign(components, {[action.type]: action.params.page}))
+  }
+  // console.log(components);
+  return components[action.type] || state
+}
 
 const components = {
   HOME: 'Home',
