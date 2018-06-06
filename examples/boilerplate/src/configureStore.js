@@ -11,15 +11,15 @@ import * as reducers from './reducers'
 
 export default (preloadedState, initialEntries) => {
   const options = {initialEntries, basenames: ['/foo', '/bar']}
-  const router = createRouter(routes, options, [
+  const { middleware, reducer, firstRoute, flushChunks } = createRouter(routes, options, [
     transformAction,
     codeSplit('load'),
     enter,
-    call('thunk', {cache: true}),
+    call('thunk', { cache: true }),
   ])
 
-  // console.log('router', router)
-  const {middleware, reducer, firstRoute, flushChunks, history, ctx} = router;
+  // console.log('ConfigureStore:routerInReducer', router)
+  // const {middleware, reducer, firstRoute, flushChunks, history, ctx} = router;
   const rootReducer = combineReducers({...reducers, location: reducer})
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(middlewares)
@@ -38,11 +38,14 @@ export default (preloadedState, initialEntries) => {
     window.store = store
     window.hist = history
     window.actions = actionCreators
-    window.ctx = ctx
+    // window.ctx = ctx
   }
 
-  return {store, firstRoute}
+  return {
+    store, firstRoute
+  }
 }
+
 
 const composeEnhancers = (...args) =>
   typeof window !== 'undefined'

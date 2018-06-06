@@ -1,11 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
-
-export default (props) => {
-  return (<span>some component thats exported default</span>)
+const MyComponent = ({AsyncComponent}) => {
+  console.log('AsyncComponent',AsyncComponent);
+  return AsyncComponent ? <AsyncComponent/> : <span>Loading</span>
 }
 
-
-export const Another = (props) => {
-  return (<span>Another Component </span>)
-}
+export default connect(state => {
+  console.log('CONNECTED STATE', state)
+  return {AsyncComponent: state.location.components}
+})(MyComponent)

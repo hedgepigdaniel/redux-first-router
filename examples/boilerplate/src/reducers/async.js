@@ -1,4 +1,7 @@
 export default (state = '', action = {}) => {
-  console.log('requcer', {state, action})
+  if (action.type === 'CODESPLIT') {
+    console.log('reducer', {state, action})
+    return action
+  }
   return state
 }

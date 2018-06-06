@@ -5,6 +5,7 @@ export default (props) => {
   //   return shouldTransition(action, api)
   // }
   //
+  console.log('TESTING_TUHK')
   return (req, next) => {
 
     if (typeof req.action !== 'function') return next()

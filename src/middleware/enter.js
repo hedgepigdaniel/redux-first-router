@@ -10,6 +10,7 @@ export default (api) => async (req, next) => {
   // return early on `load` so rendering can happen ASAP
   // i.e. before `thunk` is called but after potentially async auth in `beforeEnter`
   if (req.getKind() === 'load' && !isServer() && api.resolveFirstRouteOnEnter) {
+
     setTimeout(() => {
       next().then(() => {
         req.ctx.busy = false
@@ -22,6 +23,7 @@ export default (api) => async (req, next) => {
     req.clientLoadBusy = true
     return res
   }
+
 
   return res.then(next).then(() => res)
 }

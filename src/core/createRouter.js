@@ -104,13 +104,14 @@ export default (
         })
     }
   }
-
+console.log('API',api)
 
   return {
     ...api,
     middleware,
     reducer,
     firstRoute: (resolveOnEnter = true) => {
+      console.log('firstAction',firstAction);
       api.resolveFirstRouteOnEnter = resolveOnEnter
       return firstAction
     },

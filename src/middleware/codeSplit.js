@@ -1,6 +1,6 @@
 export default (name = 'load') => (api) => async (req, next) => {
   const load = req.route && req.route[name]
-  // console.log('api', api)
+console.log('CSAPI',api)
   if (load) { // if `route.load` does not exist short-circuit
     const parts = await load(req)
     addPartsToRuntime(req, parts)
@@ -11,16 +11,15 @@ export default (name = 'load') => (api) => async (req, next) => {
 
 
 const addPartsToRuntime = (req, parts) => {
-  const {route, action, options, tmp, ctx, commitDispatch} = req
+  const { route, action, options, tmp, ctx, commitDispatch } = req
+  const { components, reducers, chunk, ...rest } = parts
+console.log('REQ',req);
+  if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
-  const {components, reducers, chunk, ...rest} = parts
-
-  if (ctx.chunks && ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
-
-
-  // if (reducers) {
-  //   options.replaceReducer(reducers)
-  // }
+  if (reducers) {
+    console.log('OPTIONS:', options)
+    // options.replaceReducer(reducers)
+  }
 
   if (components) {
     action.components = components // we need to modify `createReducer` to store `state.location.components` so after load they can be dynamically rendered within existing components!
@@ -32,15 +31,5 @@ const addPartsToRuntime = (req, parts) => {
   }
 
   Object.assign(route, rest) // rest allows you to tack on additional thunks, sagas, etc, to your route object (optionally) -- i.e. you can build the "plane" (aka route) while flying
-  // console.log('parts', parts);
-  // console.log('req', req);
-  // console.log('reducers', reducers);
-  // console.log('options', options);
-  //
-  // console.log('components', components)
-  // console.log('action', action)
-
-  // console.log('newRoute', route);
-  // console.log('ctx', ctx)
   ctx.chunks.push(chunk)
 }

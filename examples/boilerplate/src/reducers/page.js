@@ -4,7 +4,7 @@ export default (state = 'HOME', action = {}) => {
   console.log(action.type, action);
 
   if (action.params) {
-    console.log(Object.assign(components, {[action.type]: action.params.page}))
+    // console.log('addingComponents', Object.assign(components, {[action.type]: action.params.page})) .
   }
   // console.log(components);
   return components[action.type] || state

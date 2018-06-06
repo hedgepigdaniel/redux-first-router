@@ -23,11 +23,12 @@ export default {
   CODESPLIT: {
     path: '/split/:page',
     load: ({params}) => {
-      const load = universal(import(`./components/${params.page}/index.js`), {
-        chunkName: props => props.page,
-        resolve: props => require.resolveWeak(`./${props.page}`)
-      });
-      return universal({load: load})
+      return (typeof window == "undefined") ? require.resolveWeak(`./components/${params.page}`) : import(`./components/${params.page}`);
+      // const load = universal(), {
+      //   chunkName: props => props.page,
+      //   resolve: props => require.resolveWeak(`./${props.page}`)
+      // });
+      // return universal({load: load})
     }
   },
   PATHLESS: () => console.log('PATHLESS'),
