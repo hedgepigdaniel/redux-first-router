@@ -7,7 +7,7 @@ Since the middleware handles the actions it receives asyncronously, on the serve
 ```js
 import { createStore, applyMiddleware, compose } from 'redux'
 import createHistory from 'history/createMemoryHistory'
-import { connectRoutes } from 'rudy'
+import { connectRoutes } from 'redux-first-router'
 
 export async function configureStore(req) {
   const history = createHistory({ initialEntries: [req.path] }) // match initial route to express path
@@ -86,7 +86,7 @@ http.createServer(app).listen(3000)
 ```js
 import { createStore, applyMiddleware, compose } from 'redux'
 import createHistory from 'history/createMemoryHistory'
-import { connectRoutes, redirect, NOT_FOUND } from 'rudy'
+import { connectRoutes, redirect, NOT_FOUND } from 'redux-first-router'
 
 export default async function configureStore(req, res) {
   const history = createHistory({ initialEntries: [req.path] })

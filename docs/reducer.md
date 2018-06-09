@@ -12,7 +12,7 @@ In addition, it maintains similar state for the previous route on the `prev` key
 
 If the app is utilizing server side rendering, a `hasSSR` key will be set to true. 
 
-Lastly, your `routesMap` will also be stored for use by, for instance, *rudy/Link's* `<Link />` component. 
+Lastly, your `routesMap` will also be stored for use by, for instance, *redux-first-router-link's* `<Link />` component. 
 
 Here's an example of the initialState that will be created for your location reducer:
 

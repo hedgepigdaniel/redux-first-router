@@ -14,7 +14,7 @@ rather than `mapDispatchToProps` handlers. Once you get used to it, it will take
 
 Lastly, it's not that you can't still use `mapDispatchToProps`--you just won't want to
 in order to get SEO benefits for actions that you want to change the address bar (and allow the user to *back/next* through using the
-browser buttons). To learn more about how to create links, check out our [Link component](https://github.com/faceyspacey/rudy/Link).
+browser buttons). To learn more about how to create links, check out our [Link component](https://github.com/faceyspacey/redux-first-router-link).
 
 Let's now examine our `connectRoutes` function more deeply:
 
@@ -64,7 +64,7 @@ you want to trick **Redux First Router** into thinking the app is starting on wh
 the `Linking` API like this:
 
 ```javascript
-import { connectRoutes } from 'rudy'
+import { connectRoutes } from 'redux-first-router'
 import createHistory from 'history/createMemoryHistory'
 import { Linking } from 'react-native'
 import config from '../config'
@@ -165,7 +165,7 @@ the state won't reflect it. So you need to use the action to extract URL params 
 
 
 ```js
-import reduxNavigation from 'rudy-navigation'
+import reduxNavigation from 'redux-first-router-navigation'
 
 const options = {
   navigators: reduxNavigation({
@@ -188,7 +188,7 @@ The returned `reducer` expects its key in the root reducer to be at `location`, 
 ```js
 import * as reducers from '../reducers/';
 import * as otherMiddlewares from '../middlewares';
-import { connectRoutes } from 'rudy'
+import { connectRoutes } from 'redux-first-router'
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 
 const { reducer, middleware, enhancer } = connectRoutes(history, routesMap)
