@@ -16,7 +16,6 @@ const addPartsToRuntime = (req, parts) => {
   if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
   if (reducers && window.store) {
-    // window.store.replaceReducer(reducers.async)
   }
 
   if (components) {
