@@ -1,23 +1,8 @@
 export default (props) => {
-  const shouldTransition = options.shouldTransition
-  // options.shouldTransition = (action, api) => {
-  //   if (typeof action === 'function') return true
-  //   return shouldTransition(action, api)
-  // }
-  //
-  console.log('TESTING_TUHK')
-  return (req, next) => {
+  console.log('TESTING_TUHK', props);
 
-    if (typeof req.action !== 'function') return next()
-
-    const thunk = req.action
-    const thunkResult = Promise.resolve(thunk(req))
-
-    return thunkResult.then(action => {
-      return action && !action._dispatched
-        ? req.dispatch(action)
-        : action
-    })
-  }
+  console.log('THUNK:route', props.route)
+  console.log('THUNK:action', props.action);
+  return props.action
 }
 

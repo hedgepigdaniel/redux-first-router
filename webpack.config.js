@@ -1,11 +1,15 @@
 const webpack = require('webpack')
 
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV;
 
 const config = {
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        exclude: /node_modules/
+      }
     ]
   },
   output: {
@@ -40,4 +44,4 @@ if (env === 'production') {
   )
 }
 
-module.exports = config
+module.exports = config;

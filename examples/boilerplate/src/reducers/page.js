@@ -6,6 +6,7 @@ export default (state = 'HOME', action = {}) => {
   if (action.params) {
     // console.log('addingComponents', Object.assign(components, {[action.type]: action.params.page})) .
   }
+  console.log('PAGE RESUDER', action, state);
   // console.log(components);
   return components[action.type] || state
 }

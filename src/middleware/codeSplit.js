@@ -9,16 +9,14 @@ console.log('CSAPI',api)
   return next()
 }
 
-
 const addPartsToRuntime = (req, parts) => {
   const { route, action, options, tmp, ctx, commitDispatch } = req
   const { components, reducers, chunk, ...rest } = parts
-console.log('REQ',req);
+  console.log('REQ', req);
   if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
-  if (reducers) {
-    console.log('OPTIONS:', options)
-    // options.replaceReducer(reducers)
+  if (reducers && window.store) {
+    // window.store.replaceReducer(reducers.async)
   }
 
   if (components) {

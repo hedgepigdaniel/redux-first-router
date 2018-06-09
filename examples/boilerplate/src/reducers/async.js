@@ -1,6 +1,6 @@
 export default (state = '', action = {}) => {
+  console.log('CODESPLIT', state, action)
   if (action.type === 'CODESPLIT') {
-    console.log('reducer', {state, action})
     return action
   }
   return state
