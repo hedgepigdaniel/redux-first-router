@@ -11,7 +11,7 @@ import * as reducers from './reducers'
 
 export default (preloadedState, initialEntries) => {
   const options = {initialEntries, basenames: ['/foo', '/bar'], reducers}
-  const {middleware, reducer, firstRoute, flushChunks} = createRouter(routes, options, [
+  const {middleware, reducer, firstRoute, flushChunks, ctx} = createRouter(routes, options, [
     transformAction,
     codeSplit('load'),
     enter,
@@ -36,7 +36,7 @@ export default (preloadedState, initialEntries) => {
     window.store = store
     window.hist = history
     window.actions = actionCreators
-    // window.ctx = ctx
+    window.ctx = ctx
   }
 
   return {

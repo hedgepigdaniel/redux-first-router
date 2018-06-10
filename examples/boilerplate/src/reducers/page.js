@@ -1,9 +1,8 @@
 export default (state = 'HOME', action = {}) => {
   if (action.components) {
+    // assuming an action has components, add it as a route.. for now
     Object.assign(components, {[action.type]: action.components})
-    // return action.components[action.params.page]
   }
-  console.log(components);
   return components[action.type] || state
 }
 

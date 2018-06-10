@@ -18,7 +18,7 @@ const UniversalComponent = universal(({page}) => import(`./${page}`), {
 })
 
 const Switcher = ({page}) => {
-
+// shitty way to determine dynamic universal vs RUC
   if(typeof page !== "string") {
     return  (
       <div className={styles.switcher}>
