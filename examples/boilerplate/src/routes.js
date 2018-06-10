@@ -1,5 +1,4 @@
 import {redirect} from 'rudy/actions'
-import universal from 'react-universal-component'
 
 export default {
   HOME: {
@@ -24,11 +23,6 @@ export default {
     path: '/split/:page',
     load: ({params}) => {
       return (typeof window == "undefined") ? require.resolveWeak(`./components/${params.page}`) : import(`./components/${params.page}`);
-      // const load = universal(), {
-      //   chunkName: props => props.page,
-      //   resolve: props => require.resolveWeak(`./${props.page}`)
-      // });
-      // return universal({load: load})
     }
   },
   PATHLESS: () => console.log('PATHLESS'),

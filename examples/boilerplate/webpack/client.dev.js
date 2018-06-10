@@ -7,8 +7,8 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 module.exports = {
   name: 'client',
   target: 'web',
-  // devtool: 'source-map',
-  devtool: 'eval',
+  devtool: 'source-map',
+  // devtool: 'eval',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',

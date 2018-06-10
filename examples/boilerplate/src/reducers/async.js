@@ -1,7 +1,7 @@
 export default (state = '', action = {}) => {
-  console.log('CODESPLIT', state, action)
-  if (action.type === 'CODESPLIT') {
-    return action
+  if (action.type === 'CODESPLIT' && action.location.components) {
+    return action.location.components[action.params.page]
   }
+
   return state
 }

@@ -10,16 +10,14 @@ import routes from './routes'
 import * as reducers from './reducers'
 
 export default (preloadedState, initialEntries) => {
-  const options = {initialEntries, basenames: ['/foo', '/bar']}
-  const { middleware, reducer, firstRoute, flushChunks } = createRouter(routes, options, [
+  const options = {initialEntries, basenames: ['/foo', '/bar'], reducers}
+  const {middleware, reducer, firstRoute, flushChunks} = createRouter(routes, options, [
     transformAction,
     codeSplit('load'),
     enter,
-    call('thunk', { cache: true }),
-  ])
+    call('thunk', {cache: true}),
+  ]);
 
-  // console.log('ConfigureStore:routerInReducer', router)
-  // const {middleware, reducer, firstRoute, flushChunks, history, ctx} = router;
   const rootReducer = combineReducers({...reducers, location: reducer})
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(middlewares)

@@ -17,7 +17,6 @@ export class Request {
     const route = routes[action.type] || {}
     const isRouteAction = !!route.path
     const prevRoute = kind === 'init' ? routes[prev.type] || {} : routes[type]
-
     // the `tmp` context is passed along by all route-changing actions in the same primary parent
     // pipeline to keep track of things like `committed` status, but we don't want the
     // resulting action that leaves Rudy to have this, so we delete it.

@@ -1,6 +1,9 @@
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
+
+
 export default (name = 'load') => (api) => async (req, next) => {
   const load = req.route && req.route[name]
-console.log('CSAPI',api)
+
   if (load) { // if `route.load` does not exist short-circuit
     const parts = await load(req)
     addPartsToRuntime(req, parts)
@@ -9,16 +12,19 @@ console.log('CSAPI',api)
   return next()
 }
 
+
 const addPartsToRuntime = (req, parts) => {
-  const { route, action, options, tmp, ctx, commitDispatch } = req
-  const { components, reducers, chunk, ...rest } = parts
-  console.log('REQ', req);
+  const {route, action, options, tmp, ctx, commitDispatch} = req
+  const {components, reducers, chunk, ...rest} = parts
+
   if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
-  if (reducers && window.store) {
+  if (reducers) {
+    // options.replaceReducer(reducers)
   }
 
   if (components) {
+    req.location.components = components
     action.components = components // we need to modify `createReducer` to store `state.location.components` so after load they can be dynamically rendered within existing components!
   }
 

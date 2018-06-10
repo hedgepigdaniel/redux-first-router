@@ -1,7 +1,7 @@
 // @flow
 import qs from 'qs'
-import type { RoutesMapInput, Options, Store, Dispatch } from '../flow-types'
-import { compose, createHistory, createReducer, createInitialState, createRequest } from './index'
+import type {RoutesMapInput, Options, Store, Dispatch} from '../flow-types'
+import {compose, createHistory, createReducer, createInitialState, createRequest} from './index'
 
 import {
   createSelector,
@@ -29,13 +29,13 @@ export default (
     anonymousThunk,
     pathlessRoute('thunk'),
     transformAction,      // pipeline starts here
-    call('beforeLeave', { prev: true }),
+    call('beforeLeave', {prev: true}),
     call('beforeEnter'),
     enter,
     changePageTitle,
-    call('onLeave', { prev: true }),
+    call('onLeave', {prev: true}),
     call('onEnter'),
-    call('thunk', { cache: true }),
+    call('thunk', {cache: true}),
     call('onComplete')
   ]
 ) => {
@@ -56,28 +56,29 @@ export default (
   options.onError = typeof onErr !== 'undefined' ? onErr : defaultOnError
   options.parseSearch = options.parseSearch || parseSearch
   options.stringifyQuery = options.stringifyQuery || qs.stringify
-
+console.log('LOC',location);
   const routes = formatRoutes(routesInput, formatRoute)
   const selectLocationState = createSelector('location', location)
   const selectTitleState = createSelector('title', title)
   const history = createSmartHistory(routes, options)
-  const { firstAction } = history
+  const {firstAction} = history
   const initialState = createState(firstAction)
   const reducer = createLocationReducer(initialState, routes)
+  // Object.assign(options.reducers, {location: reducer})
   const wares = {}
   const register = (name: string, val?: any = true) => wares[name] = val
   const has = (name: string) => wares[name]
-  const ctx = { busy: false, chunks:[] }
-  const api = { routes, history, options, register, has, ctx }
+  const ctx = {busy: false, chunks: []}
+  const api = {routes, history, options, register, has, ctx}
   const onError = call('onError')(api)
   const nextPromise = options.compose(middlewares, api, true)
 
-  const middleware = ({ dispatch, getState }: Store) => {
+  const middleware = ({dispatch, getState}: Store) => {
     const getTitle = () => selectTitleState(getState() || {})
     const getLocation = (s) => selectLocationState(s || getState() || {})
-    const { shouldTransition, createRequest } = options // middlewares may mutably monkey-patch these in above call to `compose`
+    const {shouldTransition, createRequest} = options // middlewares may mutably monkey-patch these in above call to `compose`
 
-    Object.assign(api, { getTitle, getLocation, dispatch, getState })
+    Object.assign(api, {getTitle, getLocation, dispatch, getState})
     getState.rudy = api // make rudy available via `context` with no extra Providers, (see <Link />)
     history.listen(dispatch, getLocation) // dispatch actions in response to pops, use redux location state as single source of truth
 
@@ -97,21 +98,19 @@ export default (
           return onError(req)
         })
         .then(res => {
-          const { route, tmp, ctx, clientLoadBusy } = req
+          const {route, tmp, ctx, clientLoadBusy} = req
           const isRoutePipeline = route.path && !tmp.canceled && !clientLoadBusy
           ctx.busy = isRoutePipeline ? false : ctx.busy
           return res
         })
     }
   }
-console.log('API',api)
 
   return {
     ...api,
     middleware,
     reducer,
     firstRoute: (resolveOnEnter = true) => {
-      console.log('firstAction',firstAction);
       api.resolveFirstRouteOnEnter = resolveOnEnter
       return firstAction
     },

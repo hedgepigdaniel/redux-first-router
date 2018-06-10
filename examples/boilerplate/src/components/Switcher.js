@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import universal from 'react-universal-component'
+import Async from './AsyncComp'
 
 import styles from '../css/Switcher'
 
@@ -13,11 +14,18 @@ const UniversalComponent = universal(({page}) => import(`./${page}`), {
     </div>
   ),
 
-  error: () => <div className={styles.notFound}>PAGE NOT FOUND - 404</div>
+  error: (e) => {console.log(e); return <div className={styles.notFound}>PAGE NOT FOUND - 404</div>}
 })
 
 const Switcher = ({page}) => {
-  console.log('page', page);
+
+  if(typeof page !== "string") {
+    return  (
+      <div className={styles.switcher}>
+       <Async/>
+      </div>
+    )
+  }
   return (
     <div className={styles.switcher}>
       <UniversalComponent page={page}/>

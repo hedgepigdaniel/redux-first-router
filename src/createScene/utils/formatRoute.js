@@ -1,6 +1,6 @@
 // @flow
-import {isNotFound, typeToScene, formatRoute} from '../../utils'
-import type {RouteInput, Routes} from '../../flow-types'
+import { isNotFound, typeToScene, formatRoute } from '../../utils'
+import type { RouteInput, Routes } from '../../flow-types'
 
 export default (
   r: RouteInput,
@@ -9,7 +9,7 @@ export default (
   formatter: ?Function
 ) => {
   const route = formatRoute(r, type, routes, formatter)
-  console.log('FORMAT_ROUTE', route);
+
   route.scene = typeToScene(type)
   // set default path for NOT_FOUND actions if necessary
   if (!route.path && isNotFound(type)) {

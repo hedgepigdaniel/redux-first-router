@@ -7,3 +7,4 @@ const reducers = { async }
 const chunk = 'MyComponent'
 
 export { components, reducers, thunk, chunk }
+export default MyComponent
