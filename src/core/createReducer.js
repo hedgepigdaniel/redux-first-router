@@ -14,7 +14,7 @@ export default (initialState: Object, routes: Routes) => (
   st: LocationState = initialState,
   action: Action
 ): LocationState => {
-  if(!st.components) {
+  if (!st.components) {
     st.components = {}
   }
 

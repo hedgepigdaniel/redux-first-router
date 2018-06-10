@@ -1,4 +1,2 @@
-export default (props) => {
-  return props;
-}
+export default (props) => props
 

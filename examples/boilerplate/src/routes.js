@@ -1,4 +1,4 @@
-import {redirect} from 'rudy/actions'
+import { redirect } from 'rudy/actions'
 
 export default {
   HOME: {
@@ -10,7 +10,7 @@ export default {
       if (typeof window !== 'undefined' && window.foo) await new Promise(res => setTimeout(res, 3000))
 
       if (typeof window !== 'undefined' && window.foo) {
-        const res = await req.dispatch({type: 'LIST', params: {category: 'react'}})
+        const res = await req.dispatch({ type: 'LIST', params: { category: 'react' } })
       }
     }
     // beforeLeave: async ({ type }) => {
@@ -21,25 +21,23 @@ export default {
   },
   CODESPLIT: {
     path: '/split/:page',
-    load: ({params}) => {
-      return (typeof window == "undefined") ? require.resolveWeak(`./components/${params.page}`) : import(`./components/${params.page}`);
-    }
+    load: ({ params }) => (typeof window === 'undefined') ? require.resolveWeak(`./components/${params.page}`) : import(`./components/${params.page}`)
   },
   PATHLESS: () => console.log('PATHLESS'),
   LIST: {
     path: '/list/:category',
-    thunk: async ({params}) => {
-      const {category} = params
+    thunk: async ({ params }) => {
+      const { category } = params
       const packages = await fetch(`/api/category/${category}`)
 
       if (packages.length === 0) {
         return {
           type: 'LIST',
-          params: {category: 'redux'}
+          params: { category: 'redux' }
         }
       }
 
-      return {category, packages}
+      return { category, packages }
     }
   }
 }

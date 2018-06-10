@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 
 
 export default (name = 'load') => (api) => async (req, next) => {
@@ -14,8 +14,8 @@ export default (name = 'load') => (api) => async (req, next) => {
 
 
 const addPartsToRuntime = (req, parts) => {
-  const {route, action, options, tmp, ctx, commitDispatch} = req
-  const {components, reducers, chunk, ...rest} = parts
+  const { route, action, options, tmp, ctx, commitDispatch } = req
+  const { components, reducers, chunk, ...rest } = parts
 
   if (ctx.chunks.includes(chunk)) return // chunk was already added to runtime, so short-circuit
 
