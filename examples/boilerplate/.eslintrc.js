@@ -33,22 +33,26 @@ module.exports = {
     it: true,
     expect: true,
     beforeEach: true,
-    beforeAll: true,
-    jestUtils: true,
-    log: true
+    fetch: true,
+    alert: true
   },
-  // 'import/resolver': {
-  //   node: {
-  //     extensions: ['.js', '.css', '.json', '.styl']
-  //   }
-  // },
   rules: {
-    'import/extensions': ['.js'],
-    'import/ignore': ['node_modules', 'flow-typed', '\\.(css|styl|svg|json)$'],
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        jsx: 'never',
+        styl: 'never',
+        css: 'never'
+      }
+    ],
     'no-shadow': 0,
     'no-use-before-define': 0,
     'no-param-reassign': 0,
     'react/prop-types': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
     'react/no-render-return-value': 0,
     'no-confusing-arrow': 0,
     'no-underscore-dangle': 0,
@@ -61,38 +65,21 @@ module.exports = {
     'dot-notation': 1,
     'import/no-named-default': 1,
     'no-unused-vars': 1,
-    'import/no-unresolved': 1,
     'flowtype/no-weak-types': 1,
     'consistent-return': 0,
-    'no-nested-ternary': 0,
-    'no-empty': 0,
-    'no-cond-assign': 0,
-    'no-return-assign': 1,
-    'no-continue': 1,
-    'arrow-body-style': 1,
+    'import/prefer-default-export': 1,
     'no-console': 1,
-    'no-return-await': 1,
-    'no-multi-assign': 1,
-    'guard-for-in': 1,
-    'jsx-a11y/aria-props': 1,
-    'no-await-in-loop': 1,
-    'prefer-destructuring': 1,
-    'no-return-assign': 0,
-    'no-multi-assign': 0,
-    'space-before-function-paren': 0,
-    'guard-for-in': 0,
-    'no-restricted-syntax': 0,
+    'jsx-a11y/no-static-element-interactions': 1,
+    'no-case-declarations': 1,
     'class-methods-use-this': 0,
-    'object-curly-newline': 0,
-    'object-shorthand': 0,
     semi: [2, 'never'],
-    'no-multi-spaces': [2, { ignoreEOLComments: true }],
     'flowtype/semi': [2, 'never'],
     'jsx-quotes': [2, 'prefer-single'],
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.js'] }],
     'spaced-comment': [2, 'always', { markers: ['?'] }],
-    'arrow-parens': [0, 'as-needed', { requireForBlockBody: false }],
+    'arrow-parens': [2, 'as-needed', { requireForBlockBody: false }],
     'brace-style': [2, 'stroustrup'],
+    'import/no-unresolved': [2, { commonjs: true, caseSensitive: true }],
     'no-unused-expressions': [
       2,
       {
@@ -122,7 +109,7 @@ module.exports = {
     'max-len': [
       'error',
       {
-        code: 86,
+        code: 80,
         tabWidth: 2,
         ignoreUrls: true,
         ignoreComments: true,
@@ -132,7 +119,7 @@ module.exports = {
       }
     ],
     'react/sort-comp': [
-      1,
+      2,
       {
         order: [
           'propTypes',
@@ -148,6 +135,7 @@ module.exports = {
           'render'
         ]
       }
-    ]
+    ],
+    'linebreak-style': 0
   }
 }

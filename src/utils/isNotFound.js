@@ -1,5 +1,5 @@
 // @flow
-import type { Action } from '../flow-types'
+import type {Action} from '../flow-types'
 
 export default (action: Action | string): boolean => {
   const type = typeof action === 'string' ? action : (action.type || '')
