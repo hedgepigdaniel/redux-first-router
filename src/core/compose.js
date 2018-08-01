@@ -11,7 +11,7 @@ export default (middlewares, curryArg, killOnRedirect = false) => {
     let index = -1 // last called middleware #
     let result
 
-    return dispatch(0)
+    return dispach(0)
 
     function dispatch(i, ...args) {
       if (req.redirect !== undefined && killOnRedirect) { // short-circuit, dont call next middleware
