@@ -1,4 +1,4 @@
-import { redirect } from 'redux-first-router'
+import { redirect } from 'rudy'
 
 export default {
   HOME: {

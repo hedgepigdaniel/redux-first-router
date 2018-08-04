@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Link, { NavLink } from 'redux-first-router-link'
+import Link, { NavLink } from 'rudy/Link'
 
 import styles from '../css/Sidebar'
 

@@ -53,7 +53,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.css'],
+    alias: {
+      'rudy': path.resolve(__dirname, '../../../')
+    }
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({

@@ -45,7 +45,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.css'],
     alias: {
-      'rudy': path.resolve(__dirname, '../../../src')
+      'rudy': path.resolve(__dirname, '../../../src/')
     }
   },
   plugins: [
@@ -75,8 +75,8 @@ module.exports = {
           'redux',
           'history/createBrowserHistory',
           'transition-group',
-          'redux-first-router',
-          'redux-first-router-link',
+          'rudy',
+          'rudy/Link',
           'babel-polyfill',
           'redux-devtools-extension/logOnlyInProduction'
         ]
