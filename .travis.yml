@@ -4,6 +4,7 @@ node_js:
 cache: yarn
 script:
   - yarn run test --coverage --maxWorkers 1 && yarn run codecov
+  - yarn run lint && yarn run codecov
 notifications:
   email: false
   webhooks:
