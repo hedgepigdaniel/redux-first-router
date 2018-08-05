@@ -15,8 +15,8 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "clean": "rimraf dist && rimraf coverage && rimraf examples/boilerplate/buildClient && rimraf examples/boilerplate/buildServer && rimraf examples/demo/buildClient && rimraf examples/demo/buildServer",
     "test": "jest",
-    "lint": "eslint --fix ./src",
-    "format": "prettier --single-quote --parser=flow --semi=false --write '{src,__tests__,__test-helpers__}/**/*.js' && npm run lint",
+    "lint": "eslint ./src",
+    "format": "prettier --single-quote --parser=flow --semi=false --write '{src,__tests__,__test-helpers__}/**/*.js' && yarn run lint --fix",
     "cm": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "npm run clean && npm run build && npm run build:es && npm run flow-copy && npm run build:umd && npm run build:umd:min"
@@ -48,6 +48,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "codecov": "^3.0.4",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.19.1",
