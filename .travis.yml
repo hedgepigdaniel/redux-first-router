@@ -3,7 +3,7 @@ node_js:
   - stable
 cache: yarn
 script:
-  - yarn run test --coverage
+  - yarn run test --coverage --maxWorkers 1
 notifications:
   email: false
   webhooks:
